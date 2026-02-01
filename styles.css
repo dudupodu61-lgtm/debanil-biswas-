@@ -1,0 +1,436 @@
+/* ============================================
+   GOOGLE FONTS IMPORT
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap');
+
+/* ============================================
+   RESET & CSS VARIABLES
+   ============================================ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --cream:       #f5f0e8;
+  --ink:         #1a1715;
+  --ink-light:   #4a4540;
+  --ink-fade:    #8a8580;
+  --gold:        #c9a96e;
+  --gold-light:  #e2c898;
+  --warm-white:  #faf7f2;
+  --shadow:      rgba(26, 23, 21, .08);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ============================================
+   NAVBAR — Transparent / Glassmorphism
+   ============================================ */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px;
+  background: rgba(245, 240, 232, .25);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  border-bottom: 1px solid rgba(201, 169, 110, .22);
+  transition: background .35s ease, box-shadow .35s ease, padding .35s ease;
+}
+
+nav.scrolled {
+  background: rgba(245, 240, 232, .82);
+  box-shadow: 0 2px 24px var(--shadow);
+  padding: 12px 48px;
+}
+
+/* Logo */
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: .04em;
+  text-decoration: none;
+}
+
+.nav-logo span {
+  color: var(--gold);
+}
+
+/* Nav Links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: var(--ink-light);
+  font-size: .82rem;
+  font-weight: 400;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: background .25s, color .25s;
+}
+
+.nav-links li a:hover {
+  background: rgba(201, 169, 110, .12);
+  color: var(--gold);
+}
+
+/* Dropdown Wrapper */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.dropdown-toggle .arrow {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform .25s;
+  margin-top: -2px;
+}
+
+.dropdown:hover .arrow {
+  transform: rotate(-135deg);
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  min-width: 190px;
+  background: rgba(250, 247, 242, .95);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(201, 169, 110, .25);
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(26, 23, 21, .12);
+  padding: 8px 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s, transform .25s;
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 9px 22px;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--ink-light);
+  text-decoration: none;
+  transition: background .2s, color .2s;
+}
+
+.dropdown-menu a:hover {
+  background: rgba(201, 169, 110, .1);
+  color: var(--gold);
+}
+
+/* ============================================
+   PAGE SECTIONS (Full Viewport)
+   ============================================ */
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 48px 80px;
+  position: relative;
+}
+
+/* Decorative Ambient Shapes */
+section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#page1::before {
+  background:
+    radial-gradient(ellipse 520px 380px at 12% 30%, rgba(201, 169, 110, .08) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 500px at 88% 75%, rgba(201, 169, 110, .06) 0%, transparent 70%);
+}
+
+#page2::before {
+  background:
+    radial-gradient(ellipse 460px 460px at 85% 20%, rgba(201, 169, 110, .07) 0%, transparent 70%),
+    radial-gradient(ellipse 380px 420px at 10% 80%, rgba(201, 169, 110, .05) 0%, transparent 70%);
+}
+
+/* ============================================
+   PAGE 1 — Hero / Intro
+   ============================================ */
+.page-content {
+  position: relative;
+  z-index: 1;
+  max-width: 780px;
+  width: 100%;
+}
+
+/* Date Tag */
+.date-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+
+.date-tag::before,
+.date-tag::after {
+  content: '';
+  height: 1px;
+  width: 36px;
+  background: var(--gold-light);
+}
+
+/* Heading */
+.page-content h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.6rem, 5.5vw, 4rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 36px;
+  letter-spacing: -.01em;
+}
+
+.page-content h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+/* Body Paragraph */
+.page-content p {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--ink-light);
+  font-weight: 300;
+}
+
+/* Scroll Hint */
+.scroll-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: .68rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ink-fade);
+  animation: bob 2.2s ease-in-out infinite;
+}
+
+.scroll-hint .line {
+  width: 1px;
+  height: 38px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ============================================
+   PAGE 2 — Book Review
+   ============================================ */
+#page2 .page-content {
+  max-width: 820px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+/* Book Card */
+.book-card {
+  background: rgba(250, 247, 242, .6);
+  border: 1px solid rgba(201, 169, 110, .2);
+  border-radius: 14px;
+  padding: 36px 30px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 8px 40px rgba(26, 23, 21, .06);
+}
+
+.book-card .tag {
+  display: inline-block;
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(201, 169, 110, .12);
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.book-card h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.book-card .author {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--gold);
+  margin-bottom: 24px;
+}
+
+.book-card .divider {
+  width: 42px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  margin-bottom: 22px;
+}
+
+.book-card p {
+  font-size: .92rem;
+  line-height: 1.8;
+  color: var(--ink-light);
+  font-weight: 300;
+}
+
+/* Pull Quote */
+.review-quote {
+  padding-top: 10px;
+}
+
+.review-quote .quote-mark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem;
+  line-height: .8;
+  color: var(--gold-light);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.review-quote p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.28rem;
+  font-style: italic;
+  line-height: 1.75;
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.review-quote .attribution {
+  margin-top: 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: .75rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-fade);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+  text-align: center;
+  padding: 48px 24px;
+  border-top: 1px solid rgba(201, 169, 110, .18);
+}
+
+footer p {
+  font-size: .72rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-fade);
+}
+
+/* ============================================
+   REVEAL ANIMATIONS
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .8s cubic-bezier(.22, 1, .36, 1),
+              transform .8s cubic-bezier(.22, 1, .36, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: .12s; }
+.reveal-delay-2 { transition-delay: .26s; }
+.reveal-delay-3 { transition-delay: .42s; }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 820px) {
+  #page2 .page-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  nav            { padding: 14px 22px; }
+  nav.scrolled   { padding: 10px 22px; }
+  section        { padding: 110px 24px 60px; }
+  .nav-links     { gap: 2px; }
+  .nav-links li a { padding: 7px 9px; font-size: .72rem; }
+}
